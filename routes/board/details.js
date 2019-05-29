@@ -8,7 +8,8 @@ router.get("/:id", async (req, res) => {
   dbconnection.query(sql, [req.params.id], (err, result) => {
     dbconnection.release();
     if (err) throw err;
-    return res.status(200).json({ message: "ok" });
+    const temp = JSON.parse(JSON.stringify(result));
+    return res.status(200).json({ message: "ok", data: temp });
   });
 });
 
