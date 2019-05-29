@@ -7,6 +7,8 @@ router.get("/:id", async (req, res) => {
   const sql = `select * from test where id = ?`;
   dbconnection.query(sql, [req.params.id], (err, result) => {
     dbconnection.release();
+    if (err) throw err;
+    return res.status(200).json({ message: "ok" });
   });
 });
 
